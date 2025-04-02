@@ -5,3 +5,8 @@ export class RentDto{
         playFor: string
         grandTotal: number
 }
+
+export class DateRangeDto{
+        startDate: Date
+        endDate: Date
+}
