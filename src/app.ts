@@ -1,4 +1,4 @@
-import express, { json } from "express";
+import express, { json, Response } from "express";
 import { rentRoute } from "./modules/rent/rent.route";
 import cors from "cors"
 import { DBConn } from "./config/mysql";
@@ -9,6 +9,7 @@ async function bootstrap() {
     app.use(cors({ origin: "*" }));
     app.use(json())
     app.use('/rent', rentRoute)
+    app.get('/', (_req, res: Response) => { res.send('ok') })
     app.listen(8900, ()=> console.log("App run on port 8900"))
 }
 
