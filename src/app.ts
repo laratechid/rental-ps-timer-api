@@ -15,7 +15,7 @@ async function bootstrap() {
     app.use('/canteen', canteenRoute)
     app.use('/revenue', revenueRoute)
     app.get('/', (_req, res: Response) => { res.send('ok') })
-    app.listen(env.app.port, ()=> console.log(`App run on port ${env.app.port}`))
+    app.listen(env.app.port, () => console.log(`App run on port ${env.app.port}`))
 }
 
 bootstrap()

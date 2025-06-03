@@ -1,4 +1,4 @@
-export enum RentUnit{
+export enum RentUnit {
     _41 = "41",
     _42 = "42",
     _31 = "31",

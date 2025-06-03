@@ -1,4 +1,4 @@
-export class DateRangeDto{
+export class DateRangeDto {
         startDate: Date
         endDate: Date
 }

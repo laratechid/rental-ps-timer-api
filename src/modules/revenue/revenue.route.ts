@@ -12,7 +12,7 @@ class Route {
     static canteenRepository = new CanteenRepository(AppDataSource)
     private static revenueService = new RevenueService(this.rentRepository, this.canteenRepository)
 
-    static async incomes(req: Request, res: Response){
+    static async incomes(req: Request, res: Response) {
         const payload = req.body as DateRangeDto
         await this.revenueService.incomes(res, payload)
         return
@@ -20,5 +20,5 @@ class Route {
 }
 
 export const revenueRoute = [
-    route.post("", (req, res)=> Route.incomes(req, res))
+    route.post("", (req, res) => Route.incomes(req, res))
 ]
