@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "35a4031b-5439-46ca-97b9-7755f2b56e46",
+		"name": "LTS GAME",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7919997",
+		"_collection_link": "https://winter-equinox-332994.postman.co/workspace/LTS-GAME~b39b6d69-6448-49be-b88a-7a08eb3d0c8a/collection/7919997-35a4031b-5439-46ca-97b9-7755f2b56e46?action=share&source=collection_link&creator=7919997"
+	},
+	"item": [
+		{
+			"name": "/",
+			"item": [
+				{
+					"name": "Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8900",
+							"host": [
+								"localhost"
+							],
+							"port": "8900"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rent",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"unit\": \"32\",\n    \"playFor\": \"1 jam\",\n    \"grandTotal\": 6000,\n    \"note\": \"asdads\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8900/rent/store",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"rent",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incomes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2025-06-02\",\n    \"endDate\":\"2025-06-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8900/rent/incomes",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"rent",
+								"incomes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Canteen",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"unit\": \"32\",\n    \"playFor\": \"1 jam\",\n    \"grandTotal\": 6000,\n    \"note\": \"asdads\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8900/canteen/store",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"canteen",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incomes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2025-06-02\",\n    \"endDate\":\"2025-06-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8900/canteen/incomes",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"canteen",
+								"incomes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Revenue",
+			"item": [
+				{
+					"name": "Incomes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2025-06-03\",\n    \"endDate\":\"2025-06-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8900/revenue",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"revenue"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

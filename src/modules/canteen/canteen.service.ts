@@ -1,17 +1,17 @@
 import { Response } from "express"
-import { RentDto } from "../../dto/rent.dto"
-import { RentRepository } from "./rent.repository"
 import moment from "moment-timezone"
+import { CanteenRepository } from "./canteen.repository"
 import { DateRangeDto } from "../../dto/date-range.dto"
+import { CanteenDto } from "../../dto/canteen.dto"
 
-export class RentService {
-    private rentRepository: RentRepository
-    constructor(rentRepository: RentRepository) {
-        this.rentRepository = rentRepository
+export class CanteenService {
+    private canteenRepository: CanteenRepository
+    constructor(canteenRepository: CanteenRepository) {
+        this.canteenRepository = canteenRepository
     }
-    async storeData(res: Response, payload: RentDto) {
+    async storeData(res: Response, payload: CanteenDto) {
         try {
-            await this.rentRepository.store(payload)
+            await this.canteenRepository.store(payload)
             res.status(200)
             res.send('ok')
             return
@@ -26,7 +26,7 @@ export class RentService {
         try {
             const startDate = moment(dto.startDate).startOf("day").toDate();
             const endDate = moment(dto.endDate).endOf("day").toDate();
-            const data = await this.rentRepository.incomes({ startDate, endDate });
+            const data = await this.canteenRepository.incomes({ startDate, endDate });
             const formattedData = data.map(item => ({
                 ...item,
                 createdAt: moment(item.createdAt)

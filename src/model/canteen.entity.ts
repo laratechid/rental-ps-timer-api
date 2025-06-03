@@ -1,19 +1,12 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { RentUnit } from "../enum/rent.enum";
 
-@Entity({ name: "rent" })
-export class Rent {
+@Entity({ name: "canteen" })
+export class Canteen {
     @PrimaryGeneratedColumn('increment')
     id?: number;
 
-    @Column({ enum: RentUnit, type: 'enum' })
-    unit: RentUnit
-
     @Column()
-    playFor: string
-
-    @Column({ nullable: true })
-    note: string
+    item: string
 
     @Column({ nullable: true })
     grandTotal: number
