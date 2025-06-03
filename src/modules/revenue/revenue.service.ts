@@ -14,8 +14,9 @@ export class RevenueService {
 
     async incomes(res: Response, dto: DateRangeDto) {
         try {
-            const startDate = moment(dto.startDate).startOf("day").toDate();
-            const endDate = moment(dto.endDate).endOf("day").toDate();
+            const startDate = moment(dto.startDate).startOf("day").add(6, "hour").toDate();
+            const endDate = moment(dto.endDate).endOf("day").add(6, "hour").toDate();
+            console.log(startDate, endDate)
             const rent = await this.rentRepository.incomes({ startDate, endDate });
             const canteen = await this.canteenRepository.incomes({ startDate, endDate });
             const formatData = (data: any[]) => data.map(item => ({
