@@ -15,7 +15,6 @@ Set up environment variables (e.g., `.env` file):
    ```
 
 ## Run Service
-Run service watch mode:
    ```sh
    ## watch mode
    npm run dev
