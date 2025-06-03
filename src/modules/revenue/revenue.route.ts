@@ -20,5 +20,5 @@ class Route {
 }
 
 export const revenueRoute = [
-    route.post("/incomes", (req, res)=> Route.incomes(req, res))
+    route.post("", (req, res)=> Route.incomes(req, res))
 ]
