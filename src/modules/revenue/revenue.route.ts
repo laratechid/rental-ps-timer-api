@@ -12,6 +12,15 @@ class Route {
     static canteenRepository = new CanteenRepository(AppDataSource)
     private static revenueService = new RevenueService(this.rentRepository, this.canteenRepository)
 
+    static async today(res: Response) {
+        const payload = new DateRangeDto()
+        const dateNow = new Date()
+        payload.startDate = dateNow
+        payload.endDate = dateNow
+        await this.revenueService.incomes(res, payload)
+        return
+    }
+
     static async incomes(req: Request, res: Response) {
         const payload = req.body as DateRangeDto
         await this.revenueService.incomes(res, payload)
@@ -20,5 +29,6 @@ class Route {
 }
 
 export const revenueRoute = [
-    route.post("", (req, res) => Route.incomes(req, res))
+    route.post("", (req, res) => Route.incomes(req, res)),
+    route.get("/today", (req, res) => Route.incomes(req, res))
 ]
