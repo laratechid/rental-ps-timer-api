@@ -6,6 +6,7 @@ import { DBConn } from "./config/mysql";
 import { env } from "./config/env";
 import { canteenRoute } from "./modules/canteen/canteen.route";
 import { revenueRoute } from "./modules/revenue/revenue.route";
+import { inventoryRoute } from "./modules/inventory/inventory.route";
 
 async function bootstrap() {
     await DBConn()
@@ -17,6 +18,7 @@ async function bootstrap() {
     app.use('/rent', rentRoute)
     app.use('/canteen', canteenRoute)
     app.use('/revenue', revenueRoute)
+    app.use('/inventory', inventoryRoute)
     app.get('/', (_req, res: Response) => { res.send('ok') })
     app.listen(env.app.port, () => console.log(`App run on port ${env.app.port}`))
 }

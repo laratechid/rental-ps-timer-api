@@ -5,13 +5,15 @@ import { RentRepository } from "../rent/rent.repository";
 import { CanteenRepository } from "../canteen/canteen.repository";
 import { RevenueService } from "./revenue.service";
 import moment from "moment";
+import { InventoryRepository } from "../inventory/inventory.repository";
 
 const route = Router()
 
 class Route {
     static rentRepository = new RentRepository(AppDataSource)
     static canteenRepository = new CanteenRepository(AppDataSource)
-    private static revenueService = new RevenueService(this.rentRepository, this.canteenRepository)
+    static inventoryRepository = new InventoryRepository(AppDataSource)
+    private static revenueService = new RevenueService(this.rentRepository, this.canteenRepository, this.inventoryRepository)
 
     static async today(res: Response) {
         const payload = new DateRangeDto()
