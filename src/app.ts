@@ -1,4 +1,5 @@
 import express, { json, Response } from "express";
+import path from "path"
 import { rentRoute } from "./modules/rent/rent.route";
 import cors from "cors"
 import { DBConn } from "./config/mysql";
@@ -11,6 +12,8 @@ async function bootstrap() {
     const app = express()
     app.use(cors({ origin: "*" }));
     app.use(json())
+    app.set("view engine", "pug")
+    app.set("views", path.join(__dirname, "view"))
     app.use('/rent', rentRoute)
     app.use('/canteen', canteenRoute)
     app.use('/revenue', revenueRoute)

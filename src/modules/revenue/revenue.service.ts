@@ -29,7 +29,7 @@ export class RevenueService {
             const rentResult = { data: formatData(rent), total: rentTotal };
             const canteenResult = { data: formatData(canteen), total: canteenTotal };
             const totalRevenue = canteenResult.total + rentResult.total
-            res.status(200).send({ rental: rentResult, canteen: canteenResult, totalRevenue });
+            res.render("revenue", { rental: rentResult, canteen: canteenResult, totalRevenue })
         } catch (error) {
             res.status(500).send('error');
         }
