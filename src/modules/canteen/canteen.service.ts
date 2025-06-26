@@ -19,7 +19,7 @@ export class CanteenService {
         try {
             var itemParams: string = payload.item
             var decrement: number = 1
-            if (payload.item.toLowerCase() == "mie double"){
+            if (payload.item.toLowerCase() == "mie double") {
                 itemParams = "mie"
                 decrement = 2
             }

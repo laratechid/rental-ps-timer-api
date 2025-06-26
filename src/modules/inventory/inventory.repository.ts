@@ -10,10 +10,10 @@ export class InventoryRepository {
     getAll() {
         return this.inventoryRepository.find()
     }
-    
-    findOne(opt : FindOneOptions<Inventory>) {
+
+    findOne(opt: FindOneOptions<Inventory>) {
         return this.inventoryRepository.findOne(opt)
-    } 
+    }
 
     update(e: Inventory) {
         console.log(e)
