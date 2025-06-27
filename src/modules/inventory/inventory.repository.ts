@@ -16,7 +16,6 @@ export class InventoryRepository {
     }
 
     update(e: Inventory) {
-        console.log(e)
         return this.inventoryRepository.update(e.id, e)
     }
 }
