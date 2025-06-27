@@ -23,6 +23,20 @@ export class RentService {
         }
     }
 
+    async delete(res: Response, id: number) {
+        console.log(id)
+        try {
+            await this.rentRepository.delete(id)
+            res.status(200)
+            res.send('ok')
+            return
+        } catch (error) {
+            res.status(500)
+            res.send('error')
+            return
+        }
+    }
+
     async incomes(res: Response, dto: DateRangeDto) {
         try {
             const startDate = moment(dto.startDate).startOf("day").toDate();

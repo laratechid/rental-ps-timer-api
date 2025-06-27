@@ -12,6 +12,10 @@ export class RentRepository {
         return this.rentRepository.save(entity)
     }
 
+    delete(id: number) {
+        return this.rentRepository.delete(id)
+    }
+
     incomes({ startDate, endDate }: DateRangeDto) {
         return this.rentRepository.find({ where: { createdAt: Between(startDate, endDate) } })
     }
