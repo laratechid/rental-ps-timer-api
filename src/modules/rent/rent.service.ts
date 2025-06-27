@@ -24,11 +24,11 @@ export class RentService {
     }
 
     async delete(res: Response, id: number) {
-        console.log(id)
         try {
             await this.rentRepository.delete(id)
             res.status(200)
             res.send('ok')
+            console.log(`deleted rent id: ${id}`)
             return
         } catch (error) {
             res.status(500)
