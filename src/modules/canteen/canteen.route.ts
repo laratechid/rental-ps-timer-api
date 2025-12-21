@@ -4,12 +4,14 @@ import { DateRangeDto } from "../../dto/date-range.dto";
 import { CanteenRepository } from "./canteen.repository";
 import { CanteenService } from "./canteen.service";
 import { CanteenDto } from "../../dto/canteen.dto";
+import { InventoryRepository } from "../inventory/inventory.repository";
 
 const route = Router()
 
 class Route {
     static canteenRepository = new CanteenRepository(AppDataSource)
-    private static canteenService = new CanteenService(this.canteenRepository)
+    static inventoryRepository = new InventoryRepository(AppDataSource)
+    private static canteenService = new CanteenService(this.canteenRepository, this.inventoryRepository)
     static async store(req: Request, res: Response) {
         const payload = req.body as CanteenDto
         await this.canteenService.storeData(res, payload)

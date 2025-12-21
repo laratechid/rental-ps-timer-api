@@ -3,6 +3,7 @@ import { RentDto } from "../../dto/rent.dto"
 import { RentRepository } from "./rent.repository"
 import moment from "moment-timezone"
 import { DateRangeDto } from "../../dto/date-range.dto"
+import { formatDateTime } from "../../helper/time"
 
 export class RentService {
     private rentRepository: RentRepository
@@ -22,6 +23,20 @@ export class RentService {
         }
     }
 
+    async delete(res: Response, id: number) {
+        try {
+            await this.rentRepository.delete(id)
+            res.status(200)
+            res.send('ok')
+            console.log(`deleted rent id: ${id}`)
+            return
+        } catch (error) {
+            res.status(500)
+            res.send('error')
+            return
+        }
+    }
+
     async incomes(res: Response, dto: DateRangeDto) {
         try {
             const startDate = moment(dto.startDate).startOf("day").toDate();
@@ -29,9 +44,7 @@ export class RentService {
             const data = await this.rentRepository.incomes({ startDate, endDate });
             const formattedData = data.map(item => ({
                 ...item,
-                createdAt: moment(item.createdAt)
-                    .tz("Asia/Jakarta")
-                    .format("YYYY-MM-DD HH:mm:ss")
+                createdAt: formatDateTime(item.createdAt)
             }));
             const grandTotal = data.reduce((sum, item) => sum + item.grandTotal, 0);
             const result = { data: formattedData, total: grandTotal };

@@ -150,6 +150,39 @@
 			]
 		},
 		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"item\": \"nutrisari\",\n    \"stock\": 40\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8900/inventory/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"inventory",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Revenue",
 			"item": [
 				{
@@ -159,7 +192,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startDate\": \"2025-06-03\",\n    \"endDate\":\"2025-06-03\"\n}",
+							"raw": "{\n    \"startDate\": \"2025-06-26\",\n    \"endDate\":\"2025-06-26\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,6 +207,44 @@
 							"port": "8900",
 							"path": [
 								"revenue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Today",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8900/revenue/today",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"revenue",
+								"today"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Yesterday",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8900/revenue/yesterday",
+							"host": [
+								"localhost"
+							],
+							"port": "8900",
+							"path": [
+								"revenue",
+								"yesterday"
 							]
 						}
 					},

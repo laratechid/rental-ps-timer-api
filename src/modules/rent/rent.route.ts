@@ -20,9 +20,16 @@ class Route {
         await this.rentService.incomes(res, payload)
         return
     }
+
+    static async delete(req: Request, res: Response) {
+        const { id } = req.params
+        await this.rentService.delete(res, +id)
+        return
+    }
 }
 
 export const rentRoute = [
+    route.get("/delete/:id", (req, res) => Route.delete(req, res)),
     route.post("/store", (req, res) => Route.store(req, res)),
-    route.post("/incomes", (req, res) => Route.incomes(req, res))
+    route.post("/incomes", (req, res) => Route.incomes(req, res)),
 ]

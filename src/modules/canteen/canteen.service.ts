@@ -3,15 +3,31 @@ import moment from "moment-timezone"
 import { CanteenRepository } from "./canteen.repository"
 import { DateRangeDto } from "../../dto/date-range.dto"
 import { CanteenDto } from "../../dto/canteen.dto"
+import { InventoryRepository } from "../inventory/inventory.repository"
+import { FindOneOptions, Raw } from "typeorm"
+import { Inventory } from "../../model/enventory.entity"
+import { formatDateTime } from "../../helper/time"
 
 export class CanteenService {
     private canteenRepository: CanteenRepository
-    constructor(canteenRepository: CanteenRepository) {
-        this.canteenRepository = canteenRepository
+    private inventoryRepository: InventoryRepository
+    constructor(canteenRepository: CanteenRepository, inventoryRepository: InventoryRepository) {
+        this.canteenRepository = canteenRepository,
+            this.inventoryRepository = inventoryRepository
     }
     async storeData(res: Response, payload: CanteenDto) {
         try {
+            var itemParams: string = payload.item
+            var decrement: number = 1
+            if (payload.item.toLowerCase() == "mie double") {
+                itemParams = "mie"
+                decrement = 2
+            }
+            const optFetchStock: FindOneOptions<Inventory> = { where: { item: Raw(alias => `LOWER(${alias}) = LOWER(:item)`, { item: itemParams }), }, }
             await this.canteenRepository.store(payload)
+            const e = await this.inventoryRepository.findOne(optFetchStock)
+            e.remaining = (e.remaining - decrement)
+            await this.inventoryRepository.update(e)
             res.status(200)
             res.send('ok')
             return
@@ -29,9 +45,7 @@ export class CanteenService {
             const data = await this.canteenRepository.incomes({ startDate, endDate });
             const formattedData = data.map(item => ({
                 ...item,
-                createdAt: moment(item.createdAt)
-                    .tz("Asia/Jakarta")
-                    .format("YYYY-MM-DD HH:mm:ss")
+                createdAt: formatDateTime(item.createdAt)
             }));
             const grandTotal = data.reduce((sum, item) => sum + item.grandTotal, 0);
             const result = { data: formattedData, total: grandTotal };
